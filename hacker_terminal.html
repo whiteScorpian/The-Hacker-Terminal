@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dotblink{
+    display: inline block;
+    animation: blink 1.5s infinite;
+}
+.dotblink:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  .dotblink:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+
+  .dotblink:nth-child(3) {
+    animation-delay: 1s;
+  }
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+    </style>
+</head>
+<body>
+   
+    <script >
+        document.body.style.backgroundColor = "black";
+
+function createTextWithDots(textContent , fontSize , color) {
+  let textContainer = document.createElement('div');
+  let textElement = document.createElement('span');
+  textElement.textContent = textContent;
+  textElement.style.fontSize = fontSize;
+  textElement.style.color = color
+  
+  let dotContainer = document.createElement('span');
+  dotContainer.classList.add('dotblink');
+  
+  // Create three dots inside the dotblink container
+  for (let i = 0; i < 3; i++) {
+    let dot = document.createElement('span');
+    dot.textContent = '.';
+    dotContainer.appendChild(dot);
+  }
+
+  textElement.append(dotContainer);
+  textContainer.append(textElement);
+  document.body.append(textContainer)
+  
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function main() {
+  await delay(3000);
+  createTextWithDots('Initializing hacking ' , '20px' , 'green');
+
+  await delay(3000);
+  createTextWithDots('Reading your files' , '20px' , 'green');
+
+  await delay(3000);
+  createTextWithDots('Password files are detected' , '20px' , 'green');
+
+  await delay(3000);
+  createTextWithDots('Sending all passwords and personnel files to the server' , '20px' ,'green');
+
+  await delay(3000);
+  createTextWithDots('Cleaning up' , '20px' , 'green');
+}
+
+main();
+    </script>
+</body>
+</html>
